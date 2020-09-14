@@ -79,18 +79,18 @@ const data = {
     },
   ],
 
-  dashBoardPage: {
+  categoryView: {
     categoryPie : [
       { name: 'Utility', value: 400 },
       { name: 'Food', value: 300 },
-      { name: 'Entertainment', value: 300 },
+      { name: 'Leisure', value: 300 },
       { name: 'Education', value: 200 }
     ],
     categoryBar:[
-      { name: 'Utility', uv: 400, pv: 800, fill: '#8884d8',},
-      { name: 'Food', uv: 300, pv: 567, fill: '#83a6ed',},
-      { name: 'Entertainment', uv: 300, pv: 500, fill: '#8dd1e1',},
-      { name: 'Education', uv: 200, pv: 1000, fill: '#82ca9d',},
+      { name: 'Utility', cost: 400, budget: 800, },
+      { name: 'Food', cost: 300, budget: 567, },
+      { name: 'Leisure', cost: 300, budget: 500, },
+      { name: 'Education', cost: 200, budget: 1000, },
     ]
   }
 };

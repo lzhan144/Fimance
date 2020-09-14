@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { cyan, pink, purple, orange } from "@material-ui/core/colors";
+import { purple, orange } from "@material-ui/core/colors";
 import Assessment from "@material-ui/icons/Assessment";
 import InfoBox from "../components/dashboard/InfoBox";
 import globalStyles from "../styles";

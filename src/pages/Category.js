@@ -30,9 +30,9 @@ const Category = () => {
                 <Grid item xs={12} sm={6}>
                     <Paper style={styles.paper}>
                         <div style={{ ...GlobalStyles.title, ...styles.header }}>
-                            Category Ratio
+                            Category PieChart
                         </div>
-                        <CategoryPie data={Data.dashBoardPage.categoryPie}/>
+                        <CategoryPie data={Data.categoryView.categoryPie}/>
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -40,7 +40,7 @@ const Category = () => {
                         <div style={{ ...GlobalStyles.title, ...styles.header }}>
                             Expense v.s. Budget
                         </div>
-                        <CategoryBar data={Data.dashBoardPage.categoryBar}/>
+                        <CategoryBar data={Data.categoryView.categoryBar}/>
                     </Paper>
                 </Grid>
             </Grid>

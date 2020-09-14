@@ -1,30 +1,31 @@
 import React, { PureComponent } from 'react';
-import {RadialBarChart, RadialBar, Legend} from 'recharts';
+import {
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
 
-
-const style = {
-    top: 100,
-    left: 400,
-    lineHeight: '24px',
-};
-
-
-export default class CategoryBar extends PureComponent {
+export default class CategoryChart extends PureComponent {
 
     render() {
         return (
-            <RadialBarChart
-                width={500} height={300} cx={220} cy={150}
-                innerRadius={20} outerRadius={140} barSize={10}
-                data={this.props.data}>
-                <RadialBar
-                    minAngle={15} label={{ position: 'insideStart', fill: 'white' }}
-                    background clockWise dataKey="uv" legendType="circle"/>
-                <Legend
-                    iconSize={10} width={150} height={150}
-                    layout="vertical" verticalAlign="middle" wrapperStyle={style} />
-            </RadialBarChart>
+            <BarChart
+                width={500}
+                height={300}
+                data={this.props.data}
+                margin={{
+                    top: 20, right: 30, left: 25, bottom: 5,
+                }}
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
+                <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
+                <Tooltip />
+                <Legend />
+                <Bar yAxisId="left" dataKey="budget" fill="#8884d8" />
+                <Bar yAxisId="right" dataKey="cost" fill="#82ca9d" />
+            </BarChart>
         );
     }
 }
+
 
