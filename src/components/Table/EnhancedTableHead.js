@@ -8,13 +8,14 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const rows = [
-  {
-    id: "id",
-    numeric: true,
-    disablePadding: true,
-    label: "Id"
-  },
+
   { id: "name", numeric: false, disablePadding: false, label: "Name" },
+  {
+    id: "cost",
+    numeric: true,
+    disablePadding: false,
+    label: "cost"
+  },
   { id: "budget", numeric: true, disablePadding: false, label: "budget" },
 ];
 
@@ -46,7 +47,7 @@ class EnhancedTableHead extends React.Component {
                 row => (
                     <TableCell
                         key={row.id}
-                        align={row.id === "budget" ? "right" : "left"}
+                        align={row.numeric ? "right" : "left"}
                         // padding={row.disablePadding ? "none" : "default"}
                         sortDirection={orderBy === row.id ? order : false}
                     >

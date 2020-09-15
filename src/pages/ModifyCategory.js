@@ -57,7 +57,7 @@ class DataTable extends React.Component {
 
     state = {
         order: "asc",
-        orderBy: "id",
+        orderBy: "budget",
         selected: [],
         data: [],
         page: 0,
@@ -174,8 +174,8 @@ class DataTable extends React.Component {
                                             <TableCell padding="checkbox">
                                                 <Checkbox checked={isSelected} />
                                             </TableCell>
-                                            <TableCell align="left">{n.id}</TableCell>
                                             <TableCell align="left">{n.name}</TableCell>
+                                            <TableCell align="right">{n.cost}</TableCell>
                                             <TableCell align="right">{n.budget}</TableCell>
                                             <TableCell>
                                                 <Link className="button" to={{
