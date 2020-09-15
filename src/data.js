@@ -6,6 +6,7 @@ import BorderClear from "@material-ui/icons/BorderClear";
 import BorderOuter from "@material-ui/icons/BorderOuter";
 
 const data = {
+
   menus: [
     { text: "DashBoard", icon: <Assessment />, link: "/dashboard" },
     {

@@ -112,7 +112,7 @@ class Header extends React.Component {
                     aria-owns={isMenuOpen ? "material-appbar" : null}
                     aria-haspopup="true"
                     onClick={() =>
-                        window.open("https://github.com/lzhan144")
+                        window.open("https://github.com/lzhan144/Fimance")
                     }
                     color="inherit"
                 >
