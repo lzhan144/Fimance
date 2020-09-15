@@ -8,6 +8,8 @@
     "classnames": "^2.2.6",
     "faker": "^4.1.0",
     "font-awesome": "^4.7.0",
+    "history": "^5.0.0",
+    "notistack": "^1.0.0",
     "prop-types": "latest",
     "react": "^16.10.2",
     "react-countup": "^4.2.2",

@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { grey, red } from "@material-ui/core/colors";
+import { grey } from "@material-ui/core/colors";
 import Divider from "@material-ui/core/Divider";
 import PageBase from "../components/PageBase";
 import { useForm } from 'react-hook-form';
+import red from '@material-ui/core/colors/red';
 import Typography from '@material-ui/core/Typography';
+
 
 const AddCategory = () => {
     const styles = {

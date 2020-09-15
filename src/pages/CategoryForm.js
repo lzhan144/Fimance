@@ -5,8 +5,13 @@ import TextField from "@material-ui/core/TextField";
 import { grey } from "@material-ui/core/colors";
 import Divider from "@material-ui/core/Divider";
 import PageBase from "../components/PageBase";
+import red from '@material-ui/core/colors/red';
+import Typography from '@material-ui/core/Typography';
+import {useForm} from "react-hook-form";
 
-const CategoryForm = () => {
+export default function CategoryForm(props) {
+
+    const category = props.data;
     const styles = {
         toggleDiv: {
             marginTop: 20,
@@ -28,23 +33,29 @@ const CategoryForm = () => {
             marginRight: 2,
             width: '50ch',
         },
+        errorMessage: {
+            color: red[600],
+        },
     };
+    console.log("id: "+ category.id+" name: "+category.name+" budget: "+category.budget)
+
+
+    const { register, handleSubmit, errors }= useForm();
+
+    const onSubmit = async (data) => {
+        const response = await fetch(
+            '/category/modifyCategory/'+category.id,
+            {method: 'PUT',
+                body: JSON.stringify(data),
+                headers:{'Content-Type':'application/json'}
+            },
+        );
+        console.log(response.status)
+    }
 
     return (
         <PageBase title="Modify category" navigation="Application / Form Page">
-            <form>
-                {/*<TextField*/}
-                {/*    id="standard-full-width"*/}
-                {/*    label="Description"*/}
-                {/*    style={{ margin: 7 }}*/}
-                {/*    placeholder="Enter a brief description of the category"*/}
-                {/*    helperText="No longer than 50 characters"*/}
-                {/*    fullWidth*/}
-                {/*    margin="normal"*/}
-                {/*    InputLabelProps={{*/}
-                {/*        shrink: true,*/}
-                {/*    }}*/}
-                {/*/>*/}
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <TextField
                     id="standard-full-width"
                     style={{ margin: 7 }}
@@ -53,10 +64,17 @@ const CategoryForm = () => {
                     InputLabelProps={{
                         shrink: true,
                     }}
-                    label="Name"
-                    defaultValue="Name"
+                    name = "name"
+                    label= "Name"
+                    defaultValue= {category.name}
                     helperText="Modify the name"
+                    inputRef = {register({ required: true, maxLength: 20 })}
                 />
+                <Typography className={styles.errorMessage} variant="body2">
+                    {errors.name && 'name is required.'}
+                    {errors.name && errors.name.type === 'pattern' && 'Nickname should start with letters and only contain \' A-Z \', \' a-z \', \' 0-9 \' and \' _ \'.'}
+                    {errors.name && errors.name.type === 'maxLength' && 'The maximum length is 20.'}
+                </Typography>
 
                 <TextField
                     id="standard-full-width"
@@ -67,30 +85,31 @@ const CategoryForm = () => {
                         shrink: true,
                     }}
                     label="Budget"
-                    defaultValue="Budget"
-                    helperText="Modify the budget"
+                    defaultValue={category.budget}
+                    name ="budget"
+                    helperText="Enter a number"
+                    inputRef = {register({ pattern: /\d+/ })}
                 />
+                <Typography className={styles.errorMessage} variant="body2">
+                    {errors.budget && 'Please enter number for budget.'}
+                </Typography>
                 <Divider />
 
                 <div style={styles.buttons}>
                     <Link to="/table">
-                        <Button variant="contained">Cancel</Button>
+                        <Button variant="contained">Return</Button>
                     </Link>
 
-                    <Link to="/table">
-                        <Button
-                            style={styles.saveButton}
-                            variant="contained"
-                            type="submit"
-                            color="primary"
-                        >
-                            Submit
-                        </Button>
-                    </Link>
+                    <Button
+                        style={styles.saveButton}
+                        variant="contained"
+                        type="submit"
+                        color="primary">
+                        Submit
+                    </Button>
+
                 </div>
             </form>
         </PageBase>
     );
 };
-
-export default CategoryForm;

@@ -61,7 +61,8 @@ class DataTable extends React.Component {
         selected: [],
         data: [],
         page: 0,
-        rowsPerPage: 5
+        rowsPerPage: 5,
+        click: false
     };
 
     // get method
@@ -73,7 +74,6 @@ class DataTable extends React.Component {
             })
             .catch(console.log)
     }
-
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -93,6 +93,15 @@ class DataTable extends React.Component {
         }
         this.setState({ selected: [] });
     };
+
+    //
+    // handleButton = (event, category) => {
+    //     this.setState({click:true});
+    //     console.log("click: "+ this.state.click)
+    //     return(
+    //         <CategoryForm data={category}/>
+    //     )
+    // }
 
     handleClick = (event, id) => {
         const { selected } = this.state;
@@ -125,6 +134,8 @@ class DataTable extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+
+
     render() {
         const { classes } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -133,7 +144,8 @@ class DataTable extends React.Component {
 
         return (
             <Paper className={classes.root}>
-                <EnhancedTableToolbar numSelected={selected.length} />
+                {/*<EnhancedTableToolbar numSelected={selected.length} />*/}
+                <EnhancedTableToolbar selected={selected} numSelected={selected.length}/>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
@@ -166,8 +178,13 @@ class DataTable extends React.Component {
                                             <TableCell align="left">{n.name}</TableCell>
                                             <TableCell align="right">{n.budget}</TableCell>
                                             <TableCell>
-                                                <Link className="button" to="/Modifycategory">
-                                                    <Button align='justify' mini={true} variant="fab" zDepth={0}>
+                                                <Link className="button" to={{
+                                                    pathname:"/getdata",
+                                                    state:{data:n},
+                                                }} >
+                                                    <Button
+                                                        // onClick={event => this.handleButton(event, n)}
+                                                        align='justify' mini={true} variant="fab" zDepth={0}>
                                                         <ContentCreate />
                                                     </Button>
                                                 </Link>

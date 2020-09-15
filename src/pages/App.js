@@ -18,6 +18,7 @@ import FinancialReport from "./FinancialReport";
 import DataTable from "./ModifyCategory";
 import CategoryForm from "./CategoryForm";
 import NameForm from "./NameForm";
+import GetData from "./GetData";
 
 const styles = () => ({
   container: {
@@ -122,6 +123,7 @@ class App extends React.Component {
               <Route path="/Addtransaction" component={AddTransaction} />
               <Route path="/Financialreport" component={FinancialReport} />
               <Route path="/form" component={NameForm} />
+              <Route path="/getdata" component={GetData} />
 
             </Switch>
           </div>

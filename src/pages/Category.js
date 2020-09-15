@@ -51,7 +51,6 @@ const Category = () => {
                             Category PieChart
                         </div>
                         <CategoryPie data={category}/>
-                        {/*<DataDisplay data={category} />*/}
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={6}>
