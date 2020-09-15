@@ -22,7 +22,25 @@ const styles = {
         paddingLeft: "10px"
     }
 };
+
 const Category = () => {
+    const [category, setCategory] = React.useState([])
+
+    React.useEffect(() => {
+        let unmounted = false;
+        const fetchData = async() => {
+            const resp = await fetch('/category/allCategory');
+            const data = await resp.json();
+            if (!unmounted) {
+                setCategory(data);
+            }
+        };
+        fetchData();
+        return () => {
+            unmounted = true;
+        };
+    },)
+
     return (
         <div>
             <h3 style={globalStyles.navigation}>View / Category</h3>
@@ -32,7 +50,8 @@ const Category = () => {
                         <div style={{ ...GlobalStyles.title, ...styles.header }}>
                             Category PieChart
                         </div>
-                        <CategoryPie data={Data.categoryView.categoryPie}/>
+                        <CategoryPie data={category}/>
+                        {/*<DataDisplay data={category} />*/}
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={6}>

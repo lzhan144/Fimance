@@ -13,7 +13,6 @@ import Button from "@material-ui/core/Button";
 import ContentCreate from "@material-ui/icons/Create";
 import EnhancedTableHead from "../components/Table/EnhancedTableHead";
 import EnhancedTableToolbar from "../components/Table/EnhancedTableToolbar";
-import tableData from "../data";
 
 const desc = (a, b, orderBy) => {
     if (b[orderBy] < a[orderBy]) {
@@ -55,14 +54,26 @@ const styles = theme => ({
 });
 
 class DataTable extends React.Component {
+
     state = {
         order: "asc",
         orderBy: "id",
         selected: [],
-        data: tableData.category,
+        data: [],
         page: 0,
         rowsPerPage: 5
     };
+
+    // get method
+    async componentDidMount(){
+        fetch('/category/allCategory')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ data: data })
+            })
+            .catch(console.log)
+    }
+
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -155,7 +166,7 @@ class DataTable extends React.Component {
                                             <TableCell align="left">{n.name}</TableCell>
                                             <TableCell align="right">{n.budget}</TableCell>
                                             <TableCell>
-                                                <Link className="button" to="/Addcategory">
+                                                <Link className="button" to="/Modifycategory">
                                                     <Button align='justify' mini={true} variant="fab" zDepth={0}>
                                                         <ContentCreate />
                                                     </Button>
