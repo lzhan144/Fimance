@@ -37,6 +37,7 @@ const AddTransaction = () => {
     };
     const { register, handleSubmit, errors }= useForm();
     const [category, setCategory] = React.useState([]);
+    const [select, setSelect] = React.useState([]);
 
     React.useEffect(()=> {
         let unmounted=false;
@@ -52,6 +53,11 @@ const AddTransaction = () => {
         return () => {unmounted = true;}
     },
     );
+
+    const handleSelect = (event) => {
+        console.log("selected: " + event.target.value)
+        setSelect(event.target.value);
+    }
 
     const onSubmit = async (data) => {
         const response = await fetch(
@@ -139,6 +145,7 @@ const AddTransaction = () => {
 
                 <FormControl fullWidth={true}>
                     <InputLabel htmlFor="Category">Category</InputLabel>
+
                     <Select
                         inputProps={{
                             name: "Category",
@@ -146,18 +153,17 @@ const AddTransaction = () => {
                         }}
                         fullWidth={true}
                         margin="normal"
+                        value={select}
+                        onChange={handleSelect}
                     >
-
                         {category.map((cate) => {
                                 return(
-                                <MenuItem value={cate.name}>{cate.name}</MenuItem>
+                                <MenuItem value={cate.id}>{cate.name}</MenuItem>
                                 )
                             })
                         }
                     </Select>
                 </FormControl>
-
-
 
                 <Divider />
 

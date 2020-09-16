@@ -50,20 +50,6 @@ const styles = theme => ({
     }
 });
 
-function createData(name, category, source, cost, date) {
-    return { name, category, source, cost, date };
-}
-
-const rows = [
-    createData('Mortgage', 'Rent', 'Landlord', 2000,"07/02/2020"),
-    createData('Electricity', 'Utility', 'State Grid Company', 37, "12/08/2020"),
-    createData('Eating at Texas Road House', 'Food', 'Texas Road House', 240, "04/09/2020"),
-    createData('City Park Tour', 'Entertainment', 'City Park', 67, "01/05/2020"),
-    createData('Fine Dining', 'Food', 'Hell Kitchen', 670, "10/05/2020"),
-    createData('Movie', 'Entertainment', 'Great Theatre', 180, "01/07/2020"),
-
-];
-
 const classes = theme => ({
     root: {
         width: "100%",
@@ -81,22 +67,22 @@ class Transaction extends React.Component {
 
     state = {
         order: "asc",
-        orderBy: "cost",
-        data: rows,
+        orderBy: "amount",
+        data: [],
         page: 0,
         rowsPerPage: 5,
         click: false
     };
 
-    // // get method
-    // async componentDidMount() {
-    //     fetch('/categories')
-    //         .then(res => res.json())
-    //         .then((data) => {
-    //             this.setState({data: data})
-    //         })
-    //         .catch(console.log)
-    // }
+    // get method
+    async componentDidMount() {
+        fetch('/transactions')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({data: data})
+            })
+            .catch(console.log)
+    }
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -141,10 +127,10 @@ class Transaction extends React.Component {
                                         <TableRow>
 
                                             <TableCell align="left">{n.name}</TableCell>
-                                            <TableCell align="left">{n.category}</TableCell>
-                                            <TableCell align="left">{n.source}</TableCell>
-                                            <TableCell align="left">{n.cost}</TableCell>
-                                            <TableCell align="left">{n.date}</TableCell>
+                                            <TableCell align="left">{n.categoryName}</TableCell>
+                                            <TableCell align="left">{n.detail}</TableCell>
+                                            <TableCell align="left">{n.amount}</TableCell>
+                                            <TableCell align="left">{n.transactTime}</TableCell>
 
                                         </TableRow>
                                     );
