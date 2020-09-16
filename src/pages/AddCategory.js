@@ -40,7 +40,7 @@ const AddCategory = () => {
 
     const onSubmit = async (data) => {
         const response = await fetch(
-            '/category/addCategory',
+            '/categories',
             {method: 'POST',
             body: JSON.stringify(data),
             headers:{'Content-Type':'application/json'}

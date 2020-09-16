@@ -67,7 +67,7 @@ class DataTable extends React.Component {
 
     // get method
     async componentDidMount(){
-        fetch('/category/allCategory')
+        fetch('/categories')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ data: data })

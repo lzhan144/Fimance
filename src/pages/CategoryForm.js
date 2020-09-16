@@ -44,7 +44,7 @@ export default function CategoryForm(props) {
 
     const onSubmit = async (data) => {
         const response = await fetch(
-            '/category/modifyCategory/'+category.id,
+            '/categories/'+category.id,
             {method: 'PUT',
                 body: JSON.stringify(data),
                 headers:{'Content-Type':'application/json'}

@@ -34,6 +34,7 @@ const AddTransaction = () => {
         },
     };
 
+
     return (
         <PageBase title="Add a new transaction" navigation="Application / Form Page">
             <form>

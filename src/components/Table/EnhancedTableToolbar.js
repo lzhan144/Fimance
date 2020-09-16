@@ -51,7 +51,7 @@ let EnhancedTableToolbar = props => {
 
     const deleteRequest = async (id) => {
         const resp = await fetch(
-            '/category/'+id,
+            '/categories/'+id,
             {method: 'DELETE',});
         return resp;
     }
