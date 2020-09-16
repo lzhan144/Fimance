@@ -21,7 +21,7 @@ const renderCustomizedLabel = ({
 export default class CategoryPie extends PureComponent {
     render() {
         return (
-            <PieChart width={300} height={300}>
+            <PieChart width={400} height={300}>
                 <Pie
                     data={this.props.data}
                     labelLine={false}

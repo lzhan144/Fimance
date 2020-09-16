@@ -94,15 +94,6 @@ class DataTable extends React.Component {
         this.setState({ selected: [] });
     };
 
-    //
-    // handleButton = (event, category) => {
-    //     this.setState({click:true});
-    //     console.log("click: "+ this.state.click)
-    //     return(
-    //         <CategoryForm data={category}/>
-    //     )
-    // }
-
     handleClick = (event, id) => {
         const { selected } = this.state;
         const selectedIndex = selected.indexOf(id);
@@ -144,7 +135,6 @@ class DataTable extends React.Component {
 
         return (
             <Paper className={classes.root}>
-                {/*<EnhancedTableToolbar numSelected={selected.length} />*/}
                 <EnhancedTableToolbar selected={selected} numSelected={selected.length}/>
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
@@ -183,7 +173,6 @@ class DataTable extends React.Component {
                                                     state:{data:n},
                                                 }} >
                                                     <Button
-                                                        // onClick={event => this.handleButton(event, n)}
                                                         align='justify' mini={true} variant="fab" zDepth={0}>
                                                         <ContentCreate />
                                                     </Button>

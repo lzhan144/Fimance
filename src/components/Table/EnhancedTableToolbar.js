@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -38,22 +38,28 @@ const toolbarStyles = theme => ({
 });
 
 
-let EnhancedTableToolbar = props => {
+function EnhancedTableToolbar (props) {
 
     const { numSelected, selected, classes } = props;
+    const [deleted, setDelete] = React.useState(0);
 
     const handleButton = (event, selected) => {
         selected.map((select) => {
-            const response = deleteRequest(select);
+            deleteRequest(select);
+            setDelete(deleted+1);
             console.log("delete "+select);
         });
+        alert("You have delete all the categories! Please refresh the page MANUALLY.");
     }
 
     const deleteRequest = async (id) => {
         const resp = await fetch(
             '/categories/'+id,
             {method: 'DELETE',});
-        return resp;
+        console.log("rep: " + resp.status);
+        if(resp.status !== 200){
+            alert("There is a connection problem, please try again.")
+        }
     }
 
     return (
@@ -103,6 +109,4 @@ EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired
 };
 
-EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
-
-export default EnhancedTableToolbar;
+export default withStyles(toolbarStyles)(EnhancedTableToolbar);

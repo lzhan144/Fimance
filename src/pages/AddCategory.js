@@ -47,6 +47,12 @@ const AddCategory = () => {
             },
         );
         console.log(response.status)
+        if (response.status === 200){
+            alert('You have successfully added a category! You can click return button to return Now.');
+        }
+        else{
+            alert('There is a connection problem here, please resubmit the form.')
+        }
     }
 
     return (

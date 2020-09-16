@@ -51,6 +51,12 @@ export default function CategoryForm(props) {
             },
         );
         console.log(response.status)
+        if (response.status === 200){
+            alert('You have successfully modified the category! You can click return button to return Now.');
+        }
+        else{
+            alert('There is a connection problem here, please resubmit the form.')
+        }
     }
 
     return (

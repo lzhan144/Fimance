@@ -3,9 +3,7 @@ import { useForm } from 'react-hook-form';
 
 function NameForm() {
     const { register, handleSubmit, errors } = useForm(); // initialise the hook
-    // const onSubmit = (data) => {
-    //     console.log(data);
-    // };
+
     const onSubmit = async (data) => {
         console.log(data)
         console.log(JSON.stringify(data))
@@ -16,6 +14,8 @@ function NameForm() {
                 headers:{'Content-Type':'application/json'}
             },
         );
+
+
         console.log(response.status)
     }
 

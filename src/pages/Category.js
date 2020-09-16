@@ -29,7 +29,7 @@ const Category = () => {
     React.useEffect(() => {
         let unmounted = false;
         const fetchData = async() => {
-            const resp = await fetch('/category/allCategory');
+            const resp = await fetch('/categories');
             const data = await resp.json();
             if (!unmounted) {
                 setCategory(data);
@@ -51,6 +51,7 @@ const Category = () => {
                             Category PieChart
                         </div>
                         <CategoryPie data={category}/>
+                        {/*<CategoryPie data={Data.categoryView.categoryPie}/>*/}
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -58,7 +59,8 @@ const Category = () => {
                         <div style={{ ...GlobalStyles.title, ...styles.header }}>
                             Expense v.s. Budget
                         </div>
-                        <CategoryBar data={Data.categoryView.categoryBar}/>
+                        <CategoryBar data={category}/>
+                        {/*<CategoryBar data={Data.categoryView.categoryBar}/>*/}
                     </Paper>
                 </Grid>
             </Grid>

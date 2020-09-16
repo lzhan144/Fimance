@@ -82,10 +82,10 @@ const data = {
 
   categoryView: {
     categoryPie : [
-      { name: 'Utility', value: 400 },
-      { name: 'Food', value: 300 },
-      { name: 'Leisure', value: 300 },
-      { name: 'Education', value: 200 }
+      { name: 'Utility', budget: 800 },
+      { name: 'Food', budget: 567 },
+      { name: 'Leisure', budget: 500 },
+      { name: 'Education', budget: 1000 }
     ],
     categoryBar:[
       { name: 'Utility', cost: 400, budget: 800, },
