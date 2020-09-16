@@ -11,6 +11,44 @@ import {Apps, Description} from "@material-ui/icons";
 import blue from "@material-ui/core/colors/blue";
 
 const DashboardPage = () => {
+
+  const [cost, setCost] = React.useState(0);
+  const [budget, setBudget] = React.useState(0);
+  const [bill, setBill] = React.useState(0);
+  const [display, setDisplay] = React.useState([]);
+  const [budgetDone, setBudgetdone] = React.useState(false);
+  const [costDone, setCostdone] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchBudget = async() => {
+      const resp = await fetch('/categories/total');
+      const data = await resp.json();
+      setBudget(data);
+      if (!budgetDone) {
+        display.push({ name: 'Available', value: budget-cost })
+        setBudgetdone(true)
+      }};
+    const fetchCost = async() => {
+      const resp = await fetch('/transactions/expenses');
+      const data = await resp.json();
+      setCost(data);
+      if (!costDone) {
+        display.push({ name: 'Expense', value: cost })
+        setCostdone(true)
+      }
+    };
+    const fetchBill = async() => {
+      const resp = await fetch('/transactions/bills');
+      const data = await resp.json();
+      setBill(data);
+    };
+    fetchCost();
+    fetchBudget();
+    fetchBill();
+  },)
+
+
+
   return (
       <div>
         <h3 style={globalStyles.navigation}>Application / Dashboard</h3>
@@ -37,11 +75,11 @@ const DashboardPage = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <CostSummary />
+            <CostSummary cost={cost} bill={bill} budget={budget}/>
           </Grid>
 
           <Grid item xs={6} sm={6}>
-            <Progress />
+            <Progress data={display}/>
           </Grid>
         </Grid>
       </div>

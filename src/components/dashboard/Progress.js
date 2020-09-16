@@ -4,10 +4,10 @@ import Paper from "@material-ui/core/Paper";
 import GlobalStyles from "../../styles.scss";
 import {orange} from "@material-ui/core/colors";
 
-const data = [
-    { name: 'Expense', value: 400 },
-    { name: 'Available', value: 100 },
-];
+// const data = [
+//     { name: 'Expense', value: 400 },
+//     { name: 'Available', value: 100 },
+// ];
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
@@ -101,7 +101,7 @@ export default class Example extends PureComponent {
                             <Pie
                                 activeIndex={this.state.activeIndex}
                                 activeShape={renderActiveShape}
-                                data={data}
+                                data={this.props.data}
                                 innerRadius={60}
                                 outerRadius={80}
                                 fill="#8884d8"

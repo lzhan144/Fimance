@@ -31,8 +31,35 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function CostSummary() {
+export default function CostSummary(props) {
     const classes = useStyles();
+
+    // const [cost, setCost] = React.useState(0);
+    // const [budget, setBudget] = React.useState(0);
+    // const [bill, setBill] = React.useState(0);
+    //
+    // React.useEffect(() => {
+    //     const fetchBudget = async() => {
+    //         const resp = await fetch('/categories/total');
+    //         const data = await resp.json();
+    //         setBudget(data);
+    //     };
+    //     const fetchCost = async() => {
+    //         const resp = await fetch('/transactions/expenses');
+    //         const data = await resp.json();
+    //         setCost(data);
+    //     };
+    //     const fetchBill = async() => {
+    //         const resp = await fetch('/transactions/bills');
+    //         const data = await resp.json();
+    //         setBill(data);
+    //     };
+    //     fetchBudget();
+    //     fetchCost();
+    //     fetchBill();
+    // },)
+
+
 
     return (
         <Paper>
@@ -48,17 +75,7 @@ export default function CostSummary() {
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary="Expenses" />
-                    <ListItemText primary="$775" align="right" style={{ color: green[500] }}/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                    <ListItemAvatar>
-                        <Avatar>
-                            <RedeemIcon style={{ color: blue[500] }}/>
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="Income" />
-                    <ListItemText primary="$700" align="right" style={{ color: blue[500] }}/>
+                    <ListItemText primary={props.cost} align="right" style={{ color: green[500] }}/>
                 </ListItem>
                 <Divider />
                 <ListItem>
@@ -68,7 +85,7 @@ export default function CostSummary() {
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary="Budget" />
-                    <ListItemText primary="$500" align="right" style={{ color: red[500] }}/>
+                    <ListItemText primary={props.budget} align="right" style={{ color: red[500] }}/>
                 </ListItem>
                 <Divider />
                 <ListItem>
@@ -78,7 +95,7 @@ export default function CostSummary() {
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary="Bills" />
-                    <ListItemText primary="$775" align="right" style={{ color: orange[500] }}/>
+                    <ListItemText primary={props.bill} align="right" style={{ color: orange[500] }}/>
                 </ListItem>
             </List>
         </Paper>
