@@ -3,7 +3,7 @@ import {PieChart, Pie, Sector, ResponsiveContainer} from 'recharts';
 import Paper from "@material-ui/core/Paper";
 import GlobalStyles from "../../styles.scss";
 import {orange} from "@material-ui/core/colors";
-
+//
 // const data = [
 //     { name: 'Expense', value: 400 },
 //     { name: 'Available', value: 100 },
@@ -77,11 +77,19 @@ const styles = {
         paddingLeft: "10px"
     }
 };
-export default class Example extends PureComponent {
+export default class Example extends React.Component {
 
     state = {
-        activeIndex: 0,
-    };
+            activeIndex: 0,
+    }
+
+    componentDidMount() {
+        // this.setState({data:[
+        //         { name: 'Expense', value: this.props.cost },
+        //         { name: 'Available', value: this.props.available },
+        //     ]})
+        console.log(this.props.data)
+    }
 
     onPieEnter = (data, index) => {
         this.setState({

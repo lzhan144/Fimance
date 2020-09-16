@@ -15,27 +15,32 @@ const DashboardPage = () => {
   const [cost, setCost] = React.useState(0);
   const [budget, setBudget] = React.useState(0);
   const [bill, setBill] = React.useState(0);
-  const [display, setDisplay] = React.useState([]);
-  const [budgetDone, setBudgetdone] = React.useState(false);
-  const [costDone, setCostdone] = React.useState(false);
+  const [display, setDisplay] = React.useState([
+    { name: 'Expense', value: 400 },
+    { name: 'Available', value: 100 },
+  ]);
+  const [temp, setTemp] = React.useState([]);
+  const [budgetDone, setBudgetdone] = React.useState(true);
+  const [costDone, setCostdone] = React.useState(true);
 
   React.useEffect(() => {
     const fetchBudget = async() => {
       const resp = await fetch('/categories/total');
       const data = await resp.json();
       setBudget(data);
-      if (!budgetDone) {
-        display.push({ name: 'Available', value: budget-cost })
+      if (resp.response===200)
+      {
         setBudgetdone(true)
-      }};
+        console.log("budget done")
+      }
+};
     const fetchCost = async() => {
       const resp = await fetch('/transactions/expenses');
       const data = await resp.json();
       setCost(data);
-      if (!costDone) {
-        display.push({ name: 'Expense', value: cost })
-        setCostdone(true)
-      }
+      // if (resp.response===200)
+      // {setCostdone(true)}
+
     };
     const fetchBill = async() => {
       const resp = await fetch('/transactions/bills');
@@ -45,6 +50,13 @@ const DashboardPage = () => {
     fetchCost();
     fetchBudget();
     fetchBill();
+    if (costDone && budgetDone) {
+      temp.push({ name: 'Expense', value: cost });
+      temp.push({ name: 'Available', value: budget-cost });
+      setDisplay(temp);
+      setTemp([])
+    }
+    console.log(display)
   },)
 
 
