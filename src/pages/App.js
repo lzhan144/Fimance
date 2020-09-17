@@ -19,7 +19,6 @@ import DataTable from "./ModifyCategory";
 import CategoryForm from "./CategoryForm";
 import NameForm from "./NameForm";
 import GetData from "./GetData";
-import select from "./select";
 
 const styles = () => ({
   container: {

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {PieChart, Pie, Sector, ResponsiveContainer} from 'recharts';
 import Paper from "@material-ui/core/Paper";
 import GlobalStyles from "../../styles.scss";

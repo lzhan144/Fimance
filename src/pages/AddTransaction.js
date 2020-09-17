@@ -10,7 +10,7 @@ import PageBase from "../components/PageBase";
 import Button from "@material-ui/core/Button";
 
 export default function AddTransaction() {
-    const { handleSubmit, register, setValue, reset } = useForm();
+    const { handleSubmit, register, setValue } = useForm();
     const styles = {
         toggleDiv: {
             marginTop: 20,
@@ -34,7 +34,6 @@ export default function AddTransaction() {
         },
     };
     const [category, setCategory] = React.useState([]);
-    const [select, setSelect] = React.useState([]);
     const [options, setOptions] = React.useState([]);
 
     React.useEffect(()=> {

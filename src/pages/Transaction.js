@@ -118,14 +118,18 @@ class Transaction extends React.Component {
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={this.handleRequestSort}
+                            rowCount={data.length}
                         />
                         <TableBody>
                             {stableSort(data, getSorting(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(n => {
                                     return (
-                                        <TableRow>
-
+                                        <TableRow
+                                            hover
+                                            tabIndex={-1}
+                                            key={n.id}
+                                        >
                                             <TableCell align="left">{n.name}</TableCell>
                                             <TableCell align="left">{n.categoryName}</TableCell>
                                             <TableCell align="left">{n.detail}</TableCell>

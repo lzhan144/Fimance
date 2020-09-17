@@ -9,10 +9,10 @@ import Tooltip from "@material-ui/core/Tooltip";
 const rows = [
 
     { id: "name", numeric: false, disablePadding: false, label: "Name" },
-    { id: "category", numeric: false, disablePadding: false, label: "Category" },
-    { id: "source", numeric: false, disablePadding: false, label: "Source" },
-    { id: "cost", numeric: true, disablePadding: false, label: "Amount"},
-    { id: "date", numeric: false, disablePadding: false, label: "Date" },
+    { id: "categoryName", numeric: false, disablePadding: false, label: "Category" },
+    { id: "detail", numeric: false, disablePadding: false, label: "Source" },
+    { id: "amount", numeric: true, disablePadding: false, label: "Amount"},
+    { id: "transactTime", numeric: false, disablePadding: false, label: "Date" },
 ];
 
 class Head extends React.Component {
@@ -61,12 +61,9 @@ class Head extends React.Component {
 }
 
 Head.propTypes = {
-    numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.string.isRequired,
     orderBy: PropTypes.string.isRequired,
-    rowCount: PropTypes.number.isRequired
 };
 
 export default Head;
