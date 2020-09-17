@@ -1,6 +1,5 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Data from "../data";
 import CategoryPie from "../components/category/categoryPie";
 import CategoryBar from "../components/category/categoryChart";
 import Paper from "@material-ui/core/Paper";

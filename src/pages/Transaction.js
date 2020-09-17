@@ -81,7 +81,7 @@ class Transaction extends React.Component {
             .then((data) => {
                 this.setState({data: data})
             })
-            .catch(console.log)
+            // .catch(console.log)
     }
 
     handleRequestSort = (event, property) => {

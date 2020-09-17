@@ -48,10 +48,10 @@ export default function AddTransaction() {
                         category.map((cate)=>{
                             options.push({value:cate.id,label:cate.name})
                         })}
-                    console.log( options );
+                    // console.log( options );
                 }
             };
-            console.log( category );
+            // console.log( category );
             fetchCategory();
             return () => {unmounted = true;}
         },

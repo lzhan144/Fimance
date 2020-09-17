@@ -15,24 +15,21 @@ const DashboardPage = () => {
   const [cost, setCost] = React.useState(0);
   const [budget, setBudget] = React.useState(0);
   const [bill, setBill] = React.useState(0);
-  const [display, setDisplay] = React.useState([
-    { name: 'Expense', value: 400 },
-    { name: 'Available', value: 100 },
-  ]);
-  const [temp, setTemp] = React.useState([]);
-  const [budgetDone, setBudgetdone] = React.useState(true);
-  const [costDone, setCostdone] = React.useState(true);
+  const [category, setCategory] =React.useState([]);
+  const [transaction, setTransaction] =React.useState([]);
+
 
   React.useEffect(() => {
+    let unmounted = false;
     const fetchBudget = async() => {
       const resp = await fetch('/categories/total');
       const data = await resp.json();
       setBudget(data);
-      if (resp.response===200)
-      {
-        setBudgetdone(true)
-        console.log("budget done")
-      }
+      // if (resp.response===200)
+      // {
+      //   setBudgetdone(true)
+      //   console.log("budget done")
+      // }
 };
     const fetchCost = async() => {
       const resp = await fetch('/transactions/expenses');
@@ -47,17 +44,28 @@ const DashboardPage = () => {
       const data = await resp.json();
       setBill(data);
     };
+      const fetchCategory = async() => {
+          const resp = await fetch('/categories');
+          const data = await resp.json();
+          if (!unmounted) {
+              setCategory(data);
+          }
+      };
+      const fetchTransaction = async() => {
+          const resp = await fetch('/transactions');
+          const data = await resp.json();
+          if (!unmounted) {
+              setTransaction(data);
+          }
+      };
     fetchCost();
     fetchBudget();
     fetchBill();
-    if (costDone && budgetDone) {
-      temp.push({ name: 'Expense', value: cost });
-      temp.push({ name: 'Available', value: budget-cost });
-      setDisplay(temp);
-      setTemp([])
-    }
-    console.log(display)
-  },)
+    fetchCategory();
+    fetchTransaction();
+
+    return () => {unmounted = true;};
+  },[cost,budget])
 
 
 
@@ -70,12 +78,12 @@ const DashboardPage = () => {
           <Grid container spacing={3} direction="row" >
             <Grid item xs={18} sm={6} md={4}>
               <Link to="/Addtransaction" className="button">
-                <InfoBox Icon={Assessment} color={purple[600]} title="Add Transaction" value="4" />
+                <InfoBox Icon={Assessment} color={purple[600]} title="Add Transaction" value={transaction.length} />
               </Link>
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
               <Link to="/table" className="button">
-                <InfoBox Icon={Apps} color={blue[600]} title="Manage Category" value="6" />
+                <InfoBox Icon={Apps} color={blue[600]} title="Manage Category" value={category.length} />
               </Link>
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
@@ -91,7 +99,7 @@ const DashboardPage = () => {
           </Grid>
 
           <Grid item xs={6} sm={6}>
-            <Progress data={display}/>
+            <Progress cost={cost} available={budget-cost} />
           </Grid>
         </Grid>
       </div>

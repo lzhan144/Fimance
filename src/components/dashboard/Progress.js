@@ -3,11 +3,6 @@ import {PieChart, Pie, Sector, ResponsiveContainer} from 'recharts';
 import Paper from "@material-ui/core/Paper";
 import GlobalStyles from "../../styles.scss";
 import {orange} from "@material-ui/core/colors";
-//
-// const data = [
-//     { name: 'Expense', value: 400 },
-//     { name: 'Available', value: 100 },
-// ];
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
@@ -77,27 +72,64 @@ const styles = {
         paddingLeft: "10px"
     }
 };
-export default class Example extends React.Component {
+export default function Example(props) {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         display: [
+    //             { name: 'Expense', value: this.props.cost },
+    //             { name: 'Available', value: this.props.available },
+    //         ],
+    //         activeIndex: 0,
+    //     }
+    // }
 
-    state = {
-            activeIndex: 0,
-    }
+    const [display, setDisplay] = React.useState([
+        { name: 'Expense', value: props.cost },
+        { name: 'Available', value: props.available },
+    ]);
+    // console.log(display)
+    const [temp, setTemp] = React.useState([]);
+    const [activeIndex, setIndex] = React.useState(0);
+    React.useEffect(() => {
+        let unmounted = false;
+          temp.push({ name: 'Expense', value: props.cost });
+          temp.push({ name: 'Available', value: props.available });
+          // console.log(temp)
+          setDisplay(temp);
+          setTemp([])
+          // console.log(display)
+        return () => {unmounted = true;};
+    },[props.available])
 
-    componentDidMount() {
-        // this.setState({data:[
-        //         { name: 'Expense', value: this.props.cost },
-        //         { name: 'Available', value: this.props.available },
-        //     ]})
-        console.log(this.props.data)
-    }
 
-    onPieEnter = (data, index) => {
-        this.setState({
-            activeIndex: index,
-        });
+    // state = {
+    //         activeIndex: 0,
+    // }
+
+    // componentDidMount() {
+    //     this.setState({display:[
+    //             { name: 'Expense', value: this.props.cost },
+    //             { name: 'Available', value: this.props.available },
+    //         ]})
+    //     console.log(this.props)
+    //     console.log(this.props.cost)
+    //     console.log(this.state.display)
+    // }
+
+    const onPieEnter = (display, index) => {
+          setIndex(index);
+          // temp.push({ name: 'Expense', value: props.cost });
+          // temp.push({ name: 'Available', value: props.available });
+          // setDisplay(temp);
+          // console.log(temp)
+          // setTemp([])
+          //   console.log(display)
     };
 
-    render() {
+
+
+    // render() {
         return (
             <Paper style={styles.paper}>
                 <div style={{ ...GlobalStyles.title, ...styles.header }}>
@@ -107,19 +139,20 @@ export default class Example extends React.Component {
                     <ResponsiveContainer>
                         <PieChart width={300} height={300} cx={150} cy={150}>
                             <Pie
-                                activeIndex={this.state.activeIndex}
+                                activeIndex={activeIndex}
                                 activeShape={renderActiveShape}
-                                data={this.props.data}
+                                data={display}
                                 innerRadius={60}
                                 outerRadius={80}
                                 fill="#8884d8"
                                 dataKey="value"
-                                onMouseEnter={this.onPieEnter}
+                                onMouseEnter={onPieEnter}
                             />
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
             </Paper>
         );
-    }
+    // }
 }
+
