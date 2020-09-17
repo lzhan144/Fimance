@@ -49,5 +49,5 @@
     "prettier": "^1.14.3",
     "prettier-eslint": "^8.8.2"
   },
-  "proxy": "http://zmwww.xyz:8080/"
+    "proxy": "http://zmwww.xyz:8080/"
 }
