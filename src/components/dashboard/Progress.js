@@ -30,7 +30,8 @@ const renderActiveShape = (props) => {
                 outerRadius={outerRadius}
                 startAngle={startAngle}
                 endAngle={endAngle}
-                fill={fill}
+                // fill={fill}
+                fill = '#FF8042'
             />
             <Sector
                 cx={cx}
@@ -39,7 +40,8 @@ const renderActiveShape = (props) => {
                 endAngle={endAngle}
                 innerRadius={outerRadius + 6}
                 outerRadius={outerRadius + 10}
-                fill={fill}
+                // fill={fill}
+                fill = '#FF8042'
             />
             <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
             <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
@@ -72,7 +74,7 @@ const styles = {
         paddingLeft: "10px"
     }
 };
-export default function Example(props) {
+export default function Progress(props) {
     // constructor(props) {
     //     super(props);
     //     this.state = {
@@ -102,7 +104,6 @@ export default function Example(props) {
         return () => {unmounted = true;};
     },[props.available])
 
-
     // state = {
     //         activeIndex: 0,
     // }
@@ -119,17 +120,8 @@ export default function Example(props) {
 
     const onPieEnter = (display, index) => {
           setIndex(index);
-          // temp.push({ name: 'Expense', value: props.cost });
-          // temp.push({ name: 'Available', value: props.available });
-          // setDisplay(temp);
-          // console.log(temp)
-          // setTemp([])
-          //   console.log(display)
     };
 
-
-
-    // render() {
         return (
             <Paper style={styles.paper}>
                 <div style={{ ...GlobalStyles.title, ...styles.header }}>
@@ -144,7 +136,7 @@ export default function Example(props) {
                                 data={display}
                                 innerRadius={60}
                                 outerRadius={80}
-                                fill="#8884d8"
+                                fill='#0088FE'
                                 dataKey="value"
                                 onMouseEnter={onPieEnter}
                             />
@@ -153,6 +145,5 @@ export default function Example(props) {
                 </div>
             </Paper>
         );
-    // }
 }
 

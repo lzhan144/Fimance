@@ -3,7 +3,6 @@ import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
-
 const renderQuarterTick = (tickProps) => {
     const { x, y, payload } = tickProps;
     const { value, offset } = payload;

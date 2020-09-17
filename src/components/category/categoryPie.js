@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import {PieChart, Pie, Cell, Legend, } from 'recharts';
+import {PieChart, Pie, Cell, Legend, Tooltip,} from 'recharts';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042',
+                '#ff4569','#af52bf'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -35,6 +36,7 @@ export default class CategoryPie extends PureComponent {
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
                     }
                 </Pie>
+                <Tooltip />
                 <Legend layout={'vertical'} align={'right'} verticalAlign={'middle'}/>
 
             </PieChart>

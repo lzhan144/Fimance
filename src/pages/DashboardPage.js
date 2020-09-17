@@ -67,8 +67,6 @@ const DashboardPage = () => {
     return () => {unmounted = true;};
   },[cost,budget])
 
-
-
   return (
       <div>
         <h3 style={globalStyles.navigation}>Application / Dashboard</h3>
